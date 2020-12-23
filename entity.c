@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdlib.h>
 #include "entity.h"
 
 entity *lookup_entity(entity *node, unsigned int entity_id) {

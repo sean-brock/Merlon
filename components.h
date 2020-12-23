@@ -5,6 +5,8 @@
 // Defines all components and their update functions for the ECS
 // All components must have an entity id.
 
+#define NUM_COMPONENTS 100
+
 typedef struct {
     int entity_id;
     int x;
@@ -29,11 +31,11 @@ typedef struct {
 } movement_ai;
 
 typedef struct {
-    position position_components[100];
+    position position_components[NUM_COMPONENTS];
     int total_position_components;
-    graphic graphic_components[100];
+    graphic graphic_components[NUM_COMPONENTS];
     int total_graphic_components;
-    movement_ai movement_ai_components[100];
+    movement_ai movement_ai_components[NUM_COMPONENTS];
     int total_movement_ai_components;
 } component_lists;
 

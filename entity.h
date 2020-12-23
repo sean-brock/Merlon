@@ -5,11 +5,12 @@
 // Defines entity data structure for all game objects.
 // Each entity is only a list of component indices in the component arrays. -1 == component not present in entity.
 // Additionally, each entity is a node in a binary tree for making entity id lookup fast.
+typedef struct entity_st entity;
 
-typedef struct {
+typedef struct entity_st {
     unsigned int id;
-    struct entity *left;
-    struct entity *right;
+    entity *left;
+    entity *right;
 
     // component indices
     int position;
