@@ -5,7 +5,7 @@
 
 void create_actor(entity *head, component_lists *components);
 
-int main() {
+int main(int argc, char *argv[]) {
   init_interface();
   printw("Hello World !!!"); /* Print Hello World		  */
   refresh();                 /* Print it on to the real screen */

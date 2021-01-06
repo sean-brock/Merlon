@@ -1,6 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <stdint.h>
+
 // entity.c
 // Defines entity data structure for all game objects.
 // Each entity is only a list of component indices in the component arrays. -1 == component not present in entity.
@@ -8,7 +10,7 @@
 typedef struct entity_st entity;
 
 typedef struct entity_st {
-    unsigned int id;
+    uint64_t id;
     entity *left;
     entity *right;
 
@@ -17,11 +19,14 @@ typedef struct entity_st {
     int movement_ai;
 } entity;
 
-entity *lookup_entity(entity *node, unsigned int entity_id);
+entity *lookup_entity(entity *tree, uint64_t entity_id);
 
 // Creates an empy entity node and returns the entity.
-entity *create_entity(entity **node);
+entity *create_entity(entity **tree);
 
-void destroy_entities(entity *node);
+int count_entities(entity *tree);
+
+void destroy_entities(entity **tree);
+
 
 #endif

@@ -11,11 +11,11 @@
 CC = clang
 
 # define any compile-time flags
-CFLAGS = -fsanitize=address -g
+CFLAGS = -fsanitize=address -ftest-coverage -fprofile-arcs -g
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I./
+INCLUDES = -I./ -I../
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
@@ -28,8 +28,7 @@ INCLUDES = -I./
 LIBS = -lncurses
 
 # define the C source files
-#SRCS = merlon.c entity.c components.c interface.c
-SRCS = *.c
+SRCS = test.c ../entity.c
 
 # define the C object files 
 #
@@ -42,7 +41,7 @@ SRCS = *.c
 OBJS = $(SRCS:.c=.o)
 
 # define the executable file 
-MAIN = merlon.app
+MAIN = test.app
 
 #
 # The following part of the makefile is generic; it can be used to 
@@ -54,7 +53,7 @@ MAIN = merlon.app
 .PHONY: clean
 
 all:    $(MAIN)
-		@echo  Simple compiler named merlon has been compiled
+		@echo  Merlon test routines compiled
 
 $(MAIN): $(OBJS) 
 		$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
@@ -67,6 +66,6 @@ $(MAIN): $(OBJS)
 		$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
 clean:
-		$(RM) *.o *~ $(MAIN)
+		$(RM) ../*.o ../*.gcno ../*.gcda ../*.profraw ../*.gcov *.o *.gcno *.gcda *.profraw *.gcov *~ $(MAIN)
 
 # DO NOT DELETE THIS LINE -- make depend needs it
